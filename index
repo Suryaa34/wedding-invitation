@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Undangan Pernikahan Surya & Retno</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="overlay"></div>
+  <div class="content">
+    <h1>💍 Surya & Retno 💍</h1>
+    <p>Dengan memohon rahmat dan ridho Allah SWT,<br>
+    kami bermaksud menyelenggarakan pernikahan kami.</p>
+
+    <div id="countdown"></div>
+
+    <p class="date">Tanggal: 30 November 2025</p>
+    <button onclick="playMusic()">🎵 Putar Musik</button>
+
+    <div class="rsvp-buttons">
+      <a href="https://wa.me/628125465512?text=Halo%20Surya%20dan%20Retno%2C%20saya%20akan%20HADIR%20di%20acara%20pernikahan%20anda.%20Terima%20kasih%20atas%20undangannya." target="_blank" class="rsvp hadir">✅ Hadir</a>
+
+      <a href="https://wa.me/628125465512?text=Halo%20Surya%20dan%20Retno%2C%20mohon%20maaf%2C%20saya%20TIDAK%20bisa%20hadir%20di%20acara%20pernikahan%20anda.%20Selamat%20dan%20semoga%20berkah." target="_blank" class="rsvp tidak">❌ Tidak Bisa Hadir</a>
+    </div>
+  </div>
+
+  <audio id="bg-music" loop>
+    <source src="assets/music.mp3" type="audio/mpeg">
+  </audio>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+function playMusic() {
+  const music = document.getElementById("bg-music");
+  music.play();
+}
+
+const targetDate = new Date("Nov 30, 2025 09:00:00").getTime();
+
+const timer = setInterval(function() {
+  const now = new Date().getTime();
+  const distance = targetDate - now;
+
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  document.getElementById("countdown").innerHTML =
+    days + " Hari " + hours + " Jam " + minutes + " Menit " + seconds + " Detik ";
+
+  if (distance < 0) {
+    clearInterval(timer);
+    document.getElementById("countdown").innerHTML = "Acara telah dimulai!";
+  }
+}, 1000);
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  height: 100%;
+  font-family: 'Poppins', sans-serif;
+  color: #fff;
+  text-align: center;
+  overflow: hidden;
+}
+
+body {
+  background: url("assets/bg.jpg") no-repeat center center/cover;
+}
+
+.overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5);
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  top: 50%;
+  transform: translateY(-50%);
+  animation: fadeIn 2s ease-in-out;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #ffd1dc;
+}
+
+p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.date {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #ffb3c6;
+  margin-bottom: 20px;
+}
+
+button, .rsvp {
+  padding: 12px 25px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 30px;
+  background: #ff7eb3;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+  text-decoration: none;
+  display: inline-block;
+}
+
+button:hover, .rsvp:hover {
+  background: #ff4d94;
+}
+
+#countdown {
+  font-size: 1.5rem;
+  margin: 20px 0;
+  font-weight: bold;
+  color: #fff0f5;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-60%); }
+  to { opacity: 1; transform: translateY(-50%); }
+}
+
+.rsvp-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.rsvp.hadir {
+  background: #4CAF50;
+}
+
+.rsvp.hadir:hover {
+  background: #388E3C;
+}
+
+.rsvp.tidak {
+  background: #F44336;
+}
+
+.rsvp.tidak:hover {
+  background: #C62828;
+}
