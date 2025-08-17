@@ -1,54 +1,103 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Undangan Pernikahan</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <!-- Overlay Background -->
-  <div class="overlay"></div>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  <!-- Musik -->
-  <audio id="bg-music" loop>
-    <source src="assets/music.mp3" type="audio/mpeg">
-  </audio>
+body, html {
+  height: 100%;
+  font-family: 'Poppins', sans-serif;
+  color: #fff;
+  text-align: center;
+  overflow: hidden;
+}
 
-  <!-- Konten Undangan -->
-  <div class="content">
-    <h1>💍 Surya & Retno 💍</h1>
-    <p>Dengan memohon rahmat dan ridho Allah SWT,<br>
-    kami bermaksud menyelenggarakan pernikahan kami.</p>
+body {
+  background: url("assets/bg.jpg") no-repeat center center/cover;
+}
 
-    <div id="countdown"></div>
+.overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5);
+}
 
-    <p class="date">Tanggal: 30 November 2025</p>
+.content {
+  position: relative;
+  z-index: 2;
+  top: 50%;
+  transform: translateY(-50%);
+  animation: fadeIn 2s ease-in-out;
+  padding: 20px;
+}
 
-    <!-- Tombol Play -->
-    <button onclick="playMusic()">🎵 Putar Musik</button>
-    <br><br>
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #ffd1dc;
+}
 
-    <!-- RSVP via WhatsApp -->
-    <div class="rsvp-buttons">
-      <a href="https://wa.me/628125465512?text=Halo%20Surya%20dan%20Ayu%2C%20saya%20akan%20HADIR%20di%20acara%20pernikahan%20anda.%20Terima%20kasih%20atas%20undangannya." 
-         target="_blank" 
-         class="rsvp hadir">✅ Hadir</a>
+p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
 
-      <a href="https://wa.me/628125465512?text=Halo%20Surya%20dan%20Ayu%2C%20mohon%20maaf%2C%20saya%20TIDAK%20bisa%20hadir%20di%20acara%20pernikahan%20anda.%20Selamat%20dan%20semoga%20berkah." 
-         target="_blank" 
-         class="rsvp tidak">❌ Tidak Bisa Hadir</a>
-    </div>
-  </div>
+.date {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #ffb3c6;
+  margin-bottom: 20px;
+}
 
-  <!-- Script -->
-  <script>
-    function playMusic() {
-      const audio = document.getElementById("bg-music");
-      audio.play().catch(err => {
-        alert("Klik tombol agar musik bisa diputar 🎶");
-      });
-    }
-  </script>
-</body>
-</html>
+button, .rsvp {
+  padding: 12px 25px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 30px;
+  background: #ff7eb3;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+  text-decoration: none;
+  display: inline-block;
+}
+
+button:hover, .rsvp:hover {
+  background: #ff4d94;
+}
+
+#countdown {
+  font-size: 1.5rem;
+  margin: 20px 0;
+  font-weight: bold;
+  color: #fff0f5;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-60%); }
+  to { opacity: 1; transform: translateY(-50%); }
+}
+
+.rsvp-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.rsvp.hadir {
+  background: #4CAF50; /* Hijau */
+}
+
+.rsvp.hadir:hover {
+  background: #388E3C;
+}
+
+.rsvp.tidak {
+  background: #F44336; /* Merah */
+}
+
+.rsvp.tidak:hover {
+  background: #C62828;
+}
